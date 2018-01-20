@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorGreen">#00ff00</color>
+    <color name="transparent">#00000000</color>
+    <color name="colorBlack">#000000</color>
+
+    <!--Gank item-->
+    <color name="textName">#939396</color>
+    <color name="textTime">#C8C8CE</color>
+    <color name="textDes">#4d4d4d</color>
+</resources>

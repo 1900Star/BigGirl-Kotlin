@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">GankKotlin</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_me">Me</string>
+    <string name="title_gank">Gank</string>
+    <string name="title_activity_gank">GankActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <!--关于我-->
+    <string name="about">关于我</string>
+    <string name="action_map">Map</string>
+    <string name="about_name">1900</string>
+    <string name="about_github">https://github.com/1900Star</string>
+    <string name="about_sign">O ever youthful, O ever weeping.</string>
+    <string name="load_more">正在加载更多</string>
+    <string name="action_share">分享</string>
+    <string name="open_broswer">浏览器</string>
+    <string name="action_auto_play">自动播放</string>
+    <string name="hash_tag">*</string>
+    <string name="save_pic">保存</string>
+
+
+</resources>

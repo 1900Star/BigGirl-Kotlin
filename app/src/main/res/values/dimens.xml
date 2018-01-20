@@ -1,0 +1,23 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">12dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="app_bar_height">250dp</dimen>
+    //字体
+    <dimen name="about_title">15sp</dimen>
+    <dimen name="about_sign">14sp</dimen>
+    <dimen name="about_content">13sp</dimen>
+    <dimen name="music_loating_title">16sp</dimen>
+    <dimen name="music_loating_name">12sp</dimen>
+    <dimen name="big_tv">20sp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="big_text">16sp</dimen>
+    <dimen name="line_height">40dp</dimen>
+    <dimen name="small_text">14sp</dimen>
+    //gank item
+    <dimen name="padding_gank_item">16dp</dimen>
+    <dimen name="padding_vertical_gank_item">8dp</dimen>
+</resources>
