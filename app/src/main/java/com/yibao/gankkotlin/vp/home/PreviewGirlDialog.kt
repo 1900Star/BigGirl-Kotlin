@@ -13,6 +13,7 @@ import com.yibao.gankkotlin.R
 import com.yibao.gankkotlin.util.AnimationUtil
 import com.yibao.gankkotlin.util.GlideUtil
 import com.yibao.gankkotlin.util.ImageUtil
+import kotlinx.android.synthetic.main.preview_girl_dialog.*
 
 
 /**
@@ -30,18 +31,18 @@ class PreviewGirlDialog : DialogFragment() {
         dialog.window!!
                 .setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val view = LinearLayout.inflate(activity, R.layout.preview_girl_dialog, null)
-        initView(view)
+        initView()
         return view
     }
 
-    private fun initView(view: View) {
-        val content = view.findViewById(R.id.preview_girl_content) as LinearLayout
+    private fun initView() {
+//        val content = view.findViewById(R.id.preview_girl_content) as LinearLayout
         val url = arguments.getString("url")
         val image = ImageUtil().creatZoomView(activity)
         GlideUtil().loadPic(url, image)
         image.setOnClickListener { this.dismiss() }
         AnimationUtil().applyBobbleAnim(image)
-        content.addView(image)
+        preview_girl_content.addView(image)
     }
 
     fun newInstance(url: String): PreviewGirlDialog {
