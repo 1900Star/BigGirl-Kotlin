@@ -23,7 +23,7 @@ BigGirl-Kotlin
   * [BigGirl](https://github.com/1900Star/BigGirl) 我的另一个Java  Gank客户端,感兴趣的可以看一下。
 
 
-# 感谢 
+# 感谢
   * [干货集中营](http://gank.io/) <br>
   * [代码家](https://github.com/daimajia) <br>
 

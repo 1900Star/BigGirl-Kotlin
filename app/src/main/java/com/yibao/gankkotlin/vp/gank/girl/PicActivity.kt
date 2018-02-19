@@ -46,7 +46,6 @@ class PicActivity : ToolbarActivity(), GirlPagerAdapter.OnGirlClickListener, Vie
         adapter = GirlPagerAdapter(this, list)
         vp_pic.adapter = adapter
         vp_pic.currentItem = position
-        iv_down.setProgress(75)
     }
 
     override fun initListener() {
@@ -59,9 +58,9 @@ class PicActivity : ToolbarActivity(), GirlPagerAdapter.OnGirlClickListener, Vie
 
     private fun getProgress() {
         RxBus.toFlowable(DownGrilProgressData::class.java).subscribe {
-//            iv_down.setProgress(it.progress)
+            iv_down.setProgress(it.progress)
             when (it.progress == maxDownProgress) {
-//                true -> SnakbarUtil().showSuccessView(vp_pic)
+                true -> SnakbarUtil().showSuccessView(vp_pic)
             }
         }
 
