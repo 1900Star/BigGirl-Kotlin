@@ -10,4 +10,4 @@ package com.yibao.gankkotlin.model
  *  @创建时间:  2018/1/14 22:52
  *  @描述：    {type   0 是下载，1是分享}
  */
-data class DownGrilProgressData(var progress: Int, var type: Int)
+data class DownGrilProgressData(var progress: Int)

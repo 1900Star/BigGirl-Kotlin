@@ -1,22 +1,22 @@
 package com.yibao.gankkotlin.util
 
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
+import android.media.MediaScannerConnection
 import android.os.Environment
-import android.provider.MediaStore
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.yibao.gankkotlin.MyApplication
 import com.yibao.gankkotlin.model.DownGrilProgressData
 import com.yibao.gankkotlin.vp.view.ZoomImageView
+import io.reactivex.Observable
+import io.reactivex.Observable.create
+import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Request
 import okhttp3.Response
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import java.util.*
 
 
 /**
@@ -33,112 +33,85 @@ class ImageUtil {
     private lateinit var file: File
 
 
-    /**
-     * 保存图片
-     */
-    fun downloadPic(url: String, type: Int): Int {
-        name = if (type == 1) {
-            "share_y.jpg"
-        } else {
-            getNameFromUrl(url)
-//            randomUUID() + ".jpg"
-        }
+    fun savaPic(context: Context, url: String): Observable<Int> {
+        return create({
+            name = getNameFromUrl(url)
 
-        val appDir = File(Environment.getExternalStorageDirectory().absolutePath + "/girls")
-//        val appDir = (Environment.getExternalStorageDirectory(),"/girls")
-        if (!appDir.exists()) {
-            appDir.mkdir()
-        }
-        file = File(appDir.absolutePath, name)
-        println("FilePath ===   " + file.absolutePath)
+            val appDir = File(Environment.getExternalStorageDirectory().absolutePath + "/girls_kotlin")
+            if (!appDir.exists()) {
+                appDir.mkdir()
+            }
+            file = File(appDir.absolutePath, name)
 
-        if (!file.exists()) {
-            try {
-                file.createNewFile()
+            if (!file.exists()) {
+                try {
+                    file.createNewFile()
 
-            } catch (e: IOException) {
-                e.printStackTrace()
-                return Constract().DWON_PIC_EROOR
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                    it.onError(e)
+                }
+
+            } else {
+                it.onNext(Constract().EXISTS)
             }
 
-        } else {
-            return Constract().EXISTS
-        }
-
-        val request = Request.Builder().url(url).addHeader("Accept-Encoding", "identity")
-                .build()
-        MyApplication().getOkhttpClient()
-                .newCall(request)
-                .enqueue(object : Callback {
-                    override fun onFailure(call: okhttp3.Call, e: IOException) {
-                        e.printStackTrace()
-                        println("下载出错 " + e.toString())
-                    }
-
-                    override fun onResponse(call: okhttp3.Call, response: Response) {
-                        val inputStream = response.body()!!.byteStream()
-                        val buffer = ByteArray(1024 * 4)
-                        var fos: FileOutputStream? = null
-                        val total = response.body()!!.contentLength()
-                        var sum: Long = 0
-                        var len = 0
-                        val off = 0
-                        try {
-                            fos = FileOutputStream(file)
-                            while (inputStream.read(buffer).apply { len = this } > 0) {
-                                fos.write(buffer, off, len)
-                                sum += len.toLong()
-                                val progress = (sum * 1.0f / total * 100).toInt()
-                                //  Rxbus发送下载进度
-                                RxBus.post(DownGrilProgressData(progress, type))
-                            }
-                            fos.flush()
-                            fos.close()
-                        } catch (e: IOException) {
+            val request = Request.Builder().url(url).addHeader("Accept-Encoding", "identity")
+                    .build()
+            MyApplication().getOkhttpClient()
+                    .newCall(request)
+                    .enqueue(object : Callback {
+                        override fun onFailure(call: Call, e: IOException) {
                             e.printStackTrace()
+                            it.onNext(Constract().DWON_PIC_EROOR)
+                            it.onError(e)
+                            println("下载出错 " + e.toString())
+                        }
 
-                        } finally {
+                        override fun onResponse(call: Call, response: Response) {
+                            val inputStream = response.body()!!.byteStream()
+                            val buffer = ByteArray(1024 * 4)
+                            var fos: FileOutputStream? = null
+                            val total = response.body()!!.contentLength()
+                            var sum: Long = 0
+                            var len = 0
+                            val off = 0
                             try {
-                                fos!!.close()
+                                fos = FileOutputStream(file)
+                                while (inputStream.read(buffer).apply { len = this } > 0) {
+                                    fos.write(buffer, off, len)
+                                    sum += len.toLong()
+                                    val progress = (sum * 1.0f / total * 100).toInt()
+                                    //  Rxbus发送下载进度
+                                    RxBus.post(DownGrilProgressData(progress))
+                                }
+                                fos.flush()
+                                fos.close()
                             } catch (e: IOException) {
                                 e.printStackTrace()
+
+                            } finally {
+                                try {
+                                    fos!!.close()
+                                } catch (e: IOException) {
+                                    e.printStackTrace()
+                                }
+
                             }
+
 
                         }
 
 
-                    }
+                    })
+            it.onNext(Constract().FIRST_DWON)
+            it.onComplete()
+            MediaScannerConnection.scanFile(context, arrayOf(file.absolutePath), null, null)
 
-
-                })
-        return Constract().FIRST_DWON
+        })
 
     }
 
-    //将下载的图片更新到图库
-    fun insertImageToPhoto(): Boolean {
-
-        try {
-            MediaStore.Images.Media.insertImage(MyApplication().getInstance()
-                    .contentResolver,
-                    file.absolutePath,
-                    name,
-                    null)
-            MyApplication().getInstance()
-                    .sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,
-                            Uri.parse("file://" + file)))
-        } catch (e: Exception) {
-            LogUtil().d("图片保存出错 ！ ", e.toString())
-            e.printStackTrace()
-            return false
-        }
-
-        return true
-    }
-
-    fun randomUUID(): String {
-        return UUID.randomUUID().toString().replace("-", "")
-    }
 
     fun creatZoomView(context: Context): ZoomImageView {
         val view = ZoomImageView(context)
