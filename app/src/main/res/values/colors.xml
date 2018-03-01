@@ -12,4 +12,12 @@
     <color name="textName">#939396</color>
     <color name="textTime">#C8C8CE</color>
     <color name="textDes">#4d4d4d</color>
+    //about
+    <color name="aboutTitle">#ff000000</color>
+    <color name="aboutSign">#5b5b5b</color>
+    <color name="lyricsNormal">#5b5b5b</color>
+    <color name="blue">#325ab1</color>
+    <color name="aboutContent">#ff414141</color>
+    <color name="about">#f7f1f1</color>
+    <color name="listBg">#ededed</color>
 </resources>

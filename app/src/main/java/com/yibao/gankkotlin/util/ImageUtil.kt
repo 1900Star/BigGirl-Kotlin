@@ -26,7 +26,7 @@ import java.io.IOException
  *  @author:   Stran
  *  @Email:   www.strangermy@outlook.com / www.stranger98@gmail.com
  *  @创建时间:  2018/1/14 17:50
- *  @描述：    {TODO}
+ *  @描述：    {保存图片}
  */
 class ImageUtil {
     private lateinit var name: String
@@ -89,7 +89,8 @@ class ImageUtil {
                                 fos.close()
                             } catch (e: IOException) {
                                 e.printStackTrace()
-
+                                it.onNext(Constract().DWON_PIC_EROOR)
+                                it.onError(e)
                             } finally {
                                 try {
                                     fos!!.close()

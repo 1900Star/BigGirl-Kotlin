@@ -37,9 +37,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@color/colorGreen"
                 android:gravity="center_vertical"
-                android:textColor="@color/colorWhite" />
+                android:textColor="@color/textName" />
 
             <TextView
                 android:id="@+id/tv_generice_type"
@@ -47,9 +46,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/colorAccent"
                 android:gravity="center_vertical"
-                android:textColor="@color/colorWhite" />
+                android:textColor="@color/textName" />
 
         </LinearLayout>
 
@@ -74,8 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="3dp"
-        android:background="@color/colorGreen"
+        android:layout_marginRight="6dp"
         android:textColor="@color/textTime" />
 </RelativeLayout>
 

@@ -11,11 +11,11 @@ import com.yibao.gankkotlin.base.BaseFragment
  */
 class MeFragment : BaseFragment() {
     override fun initView(savedInstanceState: Bundle?) {
-        setContentView(R.layout.fragment_me)
+        setContentView(R.layout.about_me)
     }
 
     override fun processLogic(savedInstanceState: Bundle?) {
-        println("fragmentMe")
+        println("MeFragment")
     }
 
 
