@@ -169,4 +169,6 @@ class PicActivity : ToolbarActivity(), GirlPagerAdapter.OnGirlClickListener, Vie
 
     }
 
+
+
 }

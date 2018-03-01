@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity(), OnLongTouthPreviewListener {
     }
 
     private fun initData() {
-        //Adapter
         view_pager_main.offscreenPageLimit = 3
         view_pager_main.adapter = MainPagerAdapter(supportFragmentManager)
     }
@@ -74,13 +73,12 @@ class MainActivity : AppCompatActivity(), OnLongTouthPreviewListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         return if (id == R.id.action_settings) {
-            //TODO
             if (isShowBttom) {
                 bottom_gank.visibility = View.INVISIBLE
-                isShowBttom=false
+                isShowBttom = false
             } else {
                 bottom_gank.visibility = View.VISIBLE
-                isShowBttom=true
+                isShowBttom = true
             }
             true
         } else super.onOptionsItemSelected(item)

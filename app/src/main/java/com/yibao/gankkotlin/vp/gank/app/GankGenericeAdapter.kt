@@ -52,6 +52,7 @@ class GankGenericeAdapter(val context: Context, list: ArrayList<Meizi>) : BaseRv
             val who = meizi.who
             gankName.text = who ?: "Smartisan"
             gankDes.text = meizi.desc
+
             gankTime.text = createdTime.substring(0, createdTime.lastIndexOf("T"))
             gankType.text = meizi.type
             gankRl.setOnClickListener {

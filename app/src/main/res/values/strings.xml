@@ -26,7 +26,7 @@
         BigGirl-Kotlin使用Kotlin开发的Gank客户端，是一个集图片浏览、开发技术干货的综合资讯客户端，整体架构采用MVP，
         UI遵循Material Design风格， Rxjava的加入也使开发更加得心应手。
         \n\tRxJava\n\tRxBus\n\tOkhttp\n\tRetrofit\n\tGlide\n\tLeakcanary
-        \n\nBigGirl：https://github.com/1900Star/BigGirl-Kotlin\n\nApi接口提供：http://gank.io/api\n\n感谢：干货集中营
+        \n\nBigGirl-Kotlin：https://github.com/1900Star/BigGirl-Kotlin\n\nApi接口提供：http://gank.io/api\n\n感谢：干货集中营
     </string>
     <string name="preject_introduce">关于项目</string>
 

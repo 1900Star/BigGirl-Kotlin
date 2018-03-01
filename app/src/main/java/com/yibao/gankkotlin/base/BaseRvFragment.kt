@@ -75,7 +75,7 @@ abstract class BaseRvFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshList
                             }
                         }
                         if (lastPosition == recyclerView.layoutManager
-                                .itemCount - 1) {
+                                        .itemCount - 1) {
                             mLoadStatus = Constract().loadDataMore
                             page++
                             mPostition++
@@ -129,14 +129,11 @@ abstract class BaseRvFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshList
                     page = 1
                     mPostition = 0
                 }
-
-
     }
 
     protected abstract fun refreshData()
     //    上拉加载更多
     protected abstract fun loadMoreData()
-//    protected abstract fun getAdapter(list: ArrayList<Meizi>): BaseRvAdapter<Meizi>
 
 
     /**
