@@ -26,9 +26,9 @@ class PicActivity : ToolbarActivity(), GirlPagerAdapter.OnGirlClickListener, Vie
     private var position: Int = 0
     private lateinit var menuAutoPlayItem: MenuItem
     private var isAutoPreview = false
-    //默认下载进度
+    // 默认下载进度
     private val defultDownProgress = 0
-    //下载进度最大值
+    // 下载进度最大值
     private var maxDownProgress = 100
 
     override fun initView(savedInstanceState: Bundle?) {
@@ -119,7 +119,6 @@ class PicActivity : ToolbarActivity(), GirlPagerAdapter.OnGirlClickListener, Vie
 
     }
 
-
     private fun saveGirl() {
         // 网络检查
         val isConnected = NetworkUtil().isNetworkConnected(this)
@@ -166,9 +165,8 @@ class PicActivity : ToolbarActivity(), GirlPagerAdapter.OnGirlClickListener, Vie
         super.onPause()
         menuAutoPlayItem.setIcon(R.drawable.btn_playing_play)
         pagerScroller.duration = 300
-
+        mDisposable.dispose()
     }
-
 
 
 }

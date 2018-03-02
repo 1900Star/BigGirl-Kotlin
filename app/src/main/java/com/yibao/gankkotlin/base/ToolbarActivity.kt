@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.view_toolbar.*
  *  @包名：    com.yibao.gankkotlin.base
  *  @文件名:   ToolbarActivity
  *  @author:   Stran
- *  @Email:   www.strangermy@outlook.com / www.stranger98@gmail.com
+ *  @Email:   www.strangermy@outlook.com / www.strangermy98@gmail.com
  *  @创建时间:  2018/1/14 16:39
  *  @描述：    {TODO}
  */
