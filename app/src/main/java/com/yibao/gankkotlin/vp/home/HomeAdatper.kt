@@ -15,7 +15,6 @@ import com.yibao.gankkotlin.base.BaseRvAdapter
 import com.yibao.gankkotlin.base.OnLongTouthPreviewListener
 import com.yibao.gankkotlin.model.Meizi
 import com.yibao.gankkotlin.util.Constract
-import com.yibao.gankkotlin.util.GlideUtil
 import com.yibao.gankkotlin.vp.web.WebActivity
 
 
@@ -50,8 +49,9 @@ class HomeAdatper(context: Context, list: ArrayList<Meizi>) : BaseRvAdapter<Meiz
             showCategroy(holder)
         } else {
             if (position != 0 && t.type == Constract().gankFuli) {
-                GlideUtil().loadPic(t.url, holder.ivGirl)
-                holder.ivGirl.visibility = View.VISIBLE
+//                GlideUtil().loadPic(t.url, holder.ivGirl)
+//                holder.ivGirl.visibility = View.VISIBLE
+                println("不显示其它图片")
             }
             if (t.type == mList[lastPosition].type) {
                 hintCategory(holder)
