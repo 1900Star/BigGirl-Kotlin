@@ -165,7 +165,6 @@ class PicActivity : ToolbarActivity(), GirlPagerAdapter.OnGirlClickListener, Vie
         super.onPause()
         menuAutoPlayItem.setIcon(R.drawable.btn_playing_play)
         pagerScroller.duration = 300
-        mDisposable.dispose()
     }
 
 
