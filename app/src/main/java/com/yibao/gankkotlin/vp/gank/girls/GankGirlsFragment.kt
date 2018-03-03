@@ -21,10 +21,7 @@ import com.yibao.gankkotlin.vp.gank.app.GankGenericePresenter
  */
 class GankGirlsFragment : BaseRvFragment() {
     override fun againLoadData() {
-        mPresenter.start(this.mLoadType, mLoadStatus)
-
-        println("=======================点击重新加载 ")
-
+        mPresenter.start(this.mLoadType, Constract().loadDataStatus)
     }
 
     private var mPresenter = GankGenericePresenter(this)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/error_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,13 +10,23 @@
 
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/network_anomaly"
+        android:textColor="@color/textName"
+        android:textSize="@dimen/about_title"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/tv_again_load"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="8dp"
         android:text="@string/again_load"
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/big_tv"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
-</ScrollView>
+</LinearLayout>

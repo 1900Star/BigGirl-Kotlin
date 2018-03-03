@@ -18,8 +18,8 @@ import com.yibao.gankkotlin.R
 class GlideUtil {
     fun loadPic(url: String, image: ImageView) {
         Glide.with(image.context).load(url).asBitmap()
-                .placeholder(R.mipmap.xuan)
-                .error(R.mipmap.xuan)
+                .placeholder(R.mipmap.star)
+                .error(R.mipmap.star)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(image)
 

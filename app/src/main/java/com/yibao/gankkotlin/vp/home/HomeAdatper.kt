@@ -51,7 +51,6 @@ class HomeAdatper(context: Context, list: ArrayList<Meizi>) : BaseRvAdapter<Meiz
             if (position != 0 && t.type == Constract().gankFuli) {
 //                GlideUtil().loadPic(t.url, holder.ivGirl)
 //                holder.ivGirl.visibility = View.VISIBLE
-                println("不显示其它图片")
             }
             if (t.type == mList[lastPosition].type) {
                 hintCategory(holder)
@@ -84,7 +83,7 @@ class HomeAdatper(context: Context, list: ArrayList<Meizi>) : BaseRvAdapter<Meiz
         var category: TextView = itemView.findViewById(R.id.category)
         var ivGirl: ImageView = itemView.findViewById(R.id.iv_gank_fuli)
         var content: TextView = itemView.findViewById(R.id.tv_gank_content)
-        var gankLayout: LinearLayout = itemView.findViewById(R.id.gank_layout)
+        var gankLayout: LinearLayout = itemView.findViewById(R.id.gank_item_content) as LinearLayout
 
         @RequiresApi(Build.VERSION_CODES.N)
         fun setData(context: Context, meizi: Meizi) {
@@ -94,24 +93,23 @@ class HomeAdatper(context: Context, list: ArrayList<Meizi>) : BaseRvAdapter<Meiz
 //                    + meizi.url + "\">"
 //                    + meizi.desc + "</a>"
 //                    + "[" + meizi.who + "]", Html.FROM_HTML_MODE_LEGACY)
-
-            val s = meizi.desc + "  [" + meizi.who + "]"
-            content.text = s
+            val mWho = if ("null" == meizi.who) "1900" else meizi.who
+            val des = meizi.desc + "  [" + mWho + "]"
+            val girl = "有福利-_-点击查看"
+            content.text = if (meizi.type == Constract().gankFuli) girl else des
             content.movementMethod = LinkMovementMethod.getInstance()
-            if (meizi.type == Constract().gankFuli) {
-                ivGirl.setOnLongClickListener {
+            content.setOnClickListener {
+                if (meizi.type == Constract().gankFuli) {
                     if (context is OnLongTouthPreviewListener) {
                         (context as OnLongTouthPreviewListener).onPreviewGirl(meizi.url)
                     }
-                    true
-                }
-
-            } else {
-                gankLayout.setOnClickListener {
+                } else {
                     val intent = Intent(gankLayout.context, WebActivity::class.java)
                     intent.putExtra("url", meizi.url)
                     gankLayout.context.startActivity(intent)
                 }
+
+
             }
 
         }

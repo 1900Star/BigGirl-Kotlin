@@ -51,63 +51,57 @@ class ImageUtil {
                     e.printStackTrace()
                     it.onError(e)
                 }
-
-            } else {
-                it.onNext(Constract().EXISTS)
-            }
-
-            val request = Request.Builder().url(url).addHeader("Accept-Encoding", "identity")
-                    .build()
-            MyApplication().getOkhttpClient()
-                    .newCall(request)
-                    .enqueue(object : Callback {
-                        override fun onFailure(call: Call, e: IOException) {
-                            e.printStackTrace()
-                            it.onNext(Constract().DWON_PIC_EROOR)
-                            it.onError(e)
-                            println("下载出错 " + e.toString())
-                        }
-
-                        override fun onResponse(call: Call, response: Response) {
-                            val inputStream = response.body()!!.byteStream()
-                            val buffer = ByteArray(1024 * 4)
-                            var fos: FileOutputStream? = null
-                            val total = response.body()!!.contentLength()
-                            var sum: Long = 0
-                            var len = 0
-                            val off = 0
-                            try {
-                                fos = FileOutputStream(file)
-                                while (inputStream.read(buffer).apply { len = this } > 0) {
-                                    fos.write(buffer, off, len)
-                                    sum += len.toLong()
-                                    val progress = (sum * 1.0f / total * 100).toInt()
-                                    //  Rxbus发送下载进度
-                                    RxBus.post(DownGrilProgressData(progress))
-                                }
-                                fos.flush()
-                                fos.close()
-                            } catch (e: IOException) {
+                val request = Request.Builder().url(url).addHeader("Accept-Encoding", "identity")
+                        .build()
+                MyApplication().getOkhttpClient()
+                        .newCall(request)
+                        .enqueue(object : Callback {
+                            override fun onFailure(call: Call, e: IOException) {
                                 e.printStackTrace()
                                 it.onNext(Constract().DWON_PIC_EROOR)
                                 it.onError(e)
-                            } finally {
-                                try {
-                                    fos!!.close()
-                                } catch (e: IOException) {
-                                    e.printStackTrace()
-                                }
-
+                                println("下载出错 " + e.toString())
                             }
 
-
-                        }
-
-
-                    })
-            it.onNext(Constract().FIRST_DWON)
-            it.onComplete()
-            MediaScannerConnection.scanFile(context, arrayOf(file.absolutePath), null, null)
+                            override fun onResponse(call: Call, response: Response) {
+                                val inputStream = response.body()!!.byteStream()
+                                val buffer = ByteArray(1024 * 4)
+                                var fos: FileOutputStream? = null
+                                val total = response.body()!!.contentLength()
+                                var sum: Long = 0
+                                var len = 0
+                                val off = 0
+                                try {
+                                    fos = FileOutputStream(file)
+                                    while (inputStream.read(buffer).apply { len = this } > 0) {
+                                        fos.write(buffer, off, len)
+                                        sum += len.toLong()
+                                        val progress = (sum * 1.0f / total * 100).toInt()
+                                        //  Rxbus发送下载进度
+                                        RxBus.post(DownGrilProgressData(progress))
+                                    }
+                                    fos.flush()
+                                    fos.close()
+                                } catch (e: IOException) {
+                                    e.printStackTrace()
+                                    it.onNext(Constract().DWON_PIC_EROOR)
+                                    it.onError(e)
+                                } finally {
+                                    try {
+                                        fos!!.close()
+                                    } catch (e: IOException) {
+                                        e.printStackTrace()
+                                    }
+                                }
+                            }
+                        })
+                it.onNext(Constract().FIRST_DWON)
+                it.onComplete()
+                MediaScannerConnection.scanFile(context, arrayOf(file.absolutePath), null, null)
+            } else {
+                it.onNext(Constract().EXISTS)
+                it.onComplete()
+            }
 
         })
 

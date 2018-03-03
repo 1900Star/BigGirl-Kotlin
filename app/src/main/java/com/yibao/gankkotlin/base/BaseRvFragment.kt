@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.ScrollView
 import android.widget.TextView
 import com.yibao.gankkotlin.R
 import com.yibao.gankkotlin.factroy.RecyclerFactory
@@ -34,17 +33,16 @@ abstract class BaseRvFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshList
     var mPostition: Int = 0
     var mLoadStatus: Int = Constract().loadDataStatus
     lateinit var mLoadType: String
-
     lateinit var mSwipeRefresh: SwipeRefreshLayout
     lateinit var mFagContent: LinearLayout
-    lateinit var mErrorView: ScrollView
+    lateinit var mErrorView: LinearLayout
     private lateinit var mTvLoadAgain: TextView
 
     override fun initView(savedInstanceState: Bundle?) {
         setContentView(R.layout.base_rv_fragment)
         mSwipeRefresh = mContentView?.findViewById<View>(R.id.swipe_refresh) as SwipeRefreshLayout
         mFagContent = mContentView?.findViewById<View>(R.id.fag_content) as LinearLayout
-        mErrorView = mContentView?.findViewById<View>(R.id.error_view) as ScrollView
+        mErrorView = mContentView?.findViewById<View>(R.id.error_view) as LinearLayout
         mTvLoadAgain = mContentView?.findViewById<View>(R.id.tv_again_load) as TextView
         mSwipeRefresh.setColorSchemeColors(Color.BLUE, Color.RED, Color.YELLOW)
         mSwipeRefresh.setOnRefreshListener(this)
@@ -156,14 +154,12 @@ abstract class BaseRvFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshList
         mSwipeRefresh.isRefreshing = false
         mFagContent.visibility = View.INVISIBLE
         mErrorView.visibility = View.VISIBLE
-        println("===========展示重新加载视图================")
     }
 
     override fun loadNormal() {
         mSwipeRefresh.isRefreshing = false
         mFagContent.visibility = View.INVISIBLE
         mErrorView.visibility = View.VISIBLE
-        println("===========  没有数据视图================")
     }
 
     /**

@@ -17,7 +17,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="@null"
         android:scaleType="centerCrop"
-        android:src="@mipmap/xuan" />
+         />
 
     <LinearLayout
         android:id="@+id/ll_content"

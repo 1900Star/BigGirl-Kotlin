@@ -30,5 +30,6 @@
     </string>
     <string name="preject_introduce">关于项目</string>
     <string name="again_load">重新加载</string>
+    <string name="network_anomaly">网络异常 -_-</string>
 
 </resources>

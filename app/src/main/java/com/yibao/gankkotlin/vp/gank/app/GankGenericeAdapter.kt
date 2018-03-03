@@ -10,6 +10,7 @@ import android.widget.TextView
 import com.yibao.gankkotlin.R
 import com.yibao.gankkotlin.base.BaseRvAdapter
 import com.yibao.gankkotlin.model.Meizi
+import com.yibao.gankkotlin.util.Constract
 import com.yibao.gankkotlin.util.GlideUtil
 import com.yibao.gankkotlin.vp.web.WebActivity
 
@@ -48,11 +49,18 @@ class GankGenericeAdapter(val context: Context, list: ArrayList<Meizi>) : BaseRv
 
         fun setData(context: Context, meizi: Meizi) {
             val createdTime = meizi.createdAt
-            GlideUtil().loadPic(meizi.url, gankIcon)
-            val who = meizi.who
-            gankName.text = who ?: "Smartisan"
-            gankDes.text = meizi.desc
+            val images = meizi.images
+            if (!(images == null || images.isEmpty())) {
+                val url = if (images.isNotEmpty()) meizi.images[0] else Constract().gakki
+                GlideUtil().loadPic(url, gankIcon)
+            } else {
+                GlideUtil().loadPic(Constract().gakki, gankIcon)
 
+            }
+
+            val who = meizi.who
+            gankName.text = if ("null" == who) "1900" else who
+            gankDes.text = meizi.desc
             gankTime.text = createdTime.substring(0, createdTime.lastIndexOf("T"))
             gankType.text = meizi.type
             gankRl.setOnClickListener {

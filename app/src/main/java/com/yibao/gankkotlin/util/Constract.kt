@@ -10,6 +10,7 @@ class Constract {
     val gankBaseUrl: String = "http://gank.io/"
     val gankHistory: String = "history"
     val gankFuli: String = "福利"
+    val gakki: String = "http://c.hiphotos.baidu.com/baike/pic/item/91ef76c6a7efce1b27893518a451f3deb58f6546.jpg"
 
     var loadDataStatus = 0
     var refreshDataStatus = 1

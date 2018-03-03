@@ -9,10 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.LinearLayout
+import android.widget.TextView
 import com.yibao.gankkotlin.R
-import com.yibao.gankkotlin.util.AnimationUtil
-import com.yibao.gankkotlin.util.GlideUtil
-import com.yibao.gankkotlin.util.ImageUtil
+import com.yibao.gankkotlin.model.DownGrilProgressData
+import com.yibao.gankkotlin.util.*
+import com.yibao.gankkotlin.vp.view.ProgressBtn
 
 
 /**
@@ -25,24 +26,58 @@ import com.yibao.gankkotlin.util.ImageUtil
  *  @描述：    {TODO}
  */
 class PreviewGirlDialog : DialogFragment() {
+    private lateinit var imageUrl: String
+    private val maxDownProgress = 100
+    private lateinit var progressBtn: ProgressBtn
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.window!!
                 .setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val view = LinearLayout.inflate(activity, R.layout.preview_girl_dialog, null)
         initView(view)
+        getProgress()
         return view
     }
 
     private fun initView(view: View) {
         val contentView = view.findViewById(R.id.preview_girl_content) as LinearLayout
-        val url = arguments.getString("url")
+        val tvSave = view.findViewById(R.id.tv_save) as TextView
+        progressBtn = view.findViewById(R.id.pb_save) as ProgressBtn
+        imageUrl = arguments.getString("url")
         val image = ImageUtil().creatZoomView(activity)
-        GlideUtil().loadPic(url, image)
+        GlideUtil().loadPic(imageUrl, image)
+        progressBtn.setMax(maxDownProgress)
+        tvSave.setOnClickListener { saveGirl() }
         image.setOnClickListener { this.dismiss() }
         AnimationUtil().applyBobbleAnim(image)
         contentView.addView(image)
     }
+
+
+    private fun getProgress() {
+        RxBus.toFlowable(DownGrilProgressData::class.java).subscribe {
+            progressBtn.setProgress(it.progress)
+            when (it.progress == maxDownProgress) {
+                true -> SnakbarUtil().showSuccessView(progressBtn)
+            }
+        }
+    }
+
+    private fun saveGirl() {
+        // 网络检查
+        val isConnected = NetworkUtil().isNetworkConnected(activity)
+        if (isConnected) {
+            ImageUtil().savaPic(activity, imageUrl).subscribe {
+                when (it) {
+                    Constract().EXISTS -> SnakbarUtil().picAlreadyExists(progressBtn)
+                    Constract().DWON_PIC_EROOR -> SnakbarUtil().showDownPicFail(progressBtn)
+                }
+            }
+        } else {
+            SnakbarUtil().netErrors(progressBtn)
+        }
+    }
+
 
     fun newInstance(url: String): PreviewGirlDialog {
         val fragment = PreviewGirlDialog()
