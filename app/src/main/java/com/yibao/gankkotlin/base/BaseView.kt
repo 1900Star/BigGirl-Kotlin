@@ -1,5 +1,7 @@
 package com.yibao.gankkotlin.base
 
+import com.yibao.gankkotlin.model.Meizi
+
 
 /**
  *  @项目名：  MyKotlin
@@ -10,7 +12,12 @@ package com.yibao.gankkotlin.base
  *  @创建时间:  2018/1/12 20:26
  *  @描述：    {TODO}
  */
-interface BaseView<T> {
+interface BaseView<in T> {
     fun setPresenter(presenter: T)
+    fun loadData(list: ArrayList<Meizi>)
+    fun loadMoreData(list: ArrayList<Meizi>)
+    fun refreshData(list: ArrayList<Meizi>)
+    fun loadError()
+    fun loadNormal()
 
 }

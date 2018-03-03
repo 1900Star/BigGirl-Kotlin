@@ -94,18 +94,20 @@ abstract class BaseRvAdapter<T>(context: Context, list: MutableList<T>) : Recycl
 
     fun clear() {
         mList.clear()
+        notifyDataSetChanged()
     }
 
 
-    fun AddHeader(list: List<T>) {
+    fun addHeader(list: List<T>) {
         mList.addAll(list)
-
+        notifyDataSetChanged()
     }
 
-    fun AddFooter(list: List<T>) {
+    fun addFooter(list: List<T>) {
         list
                 .filterNot { mList.contains(it) }
                 .forEach { mList.add(it) }
+        notifyDataSetChanged()
 
     }
 
@@ -131,7 +133,6 @@ abstract class BaseRvAdapter<T>(context: Context, list: MutableList<T>) : Recycl
         private val TYPE_ITEM = 0
         private val TYPE_FOOTER = 1
     }
-
 
 
 }

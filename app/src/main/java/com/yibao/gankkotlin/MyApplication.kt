@@ -14,9 +14,6 @@ import java.util.concurrent.TimeUnit
  *  @描述：    {TODO}
  */
 class MyApplication : Application() {
-    fun getInstance(): MyApplication = MyApplication()
-
-
     fun getOkhttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
                 .connectTimeout(3, TimeUnit.SECONDS)

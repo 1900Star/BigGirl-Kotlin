@@ -2,11 +2,11 @@ package com.yibao.gankkotlin.vp.gank.girls
 
 import android.os.Bundle
 import android.view.View
+import com.yibao.gankkotlin.base.BasePresenter
 import com.yibao.gankkotlin.base.BaseRvAdapter
 import com.yibao.gankkotlin.base.BaseRvFragment
 import com.yibao.gankkotlin.model.Meizi
 import com.yibao.gankkotlin.util.Constract
-import com.yibao.gankkotlin.vp.gank.app.GankGenericeContract
 import com.yibao.gankkotlin.vp.gank.app.GankGenericePresenter
 
 
@@ -19,7 +19,13 @@ import com.yibao.gankkotlin.vp.gank.app.GankGenericePresenter
  *  @创建时间:  2018/1/12 17:20
  *  @描述：    {TODO}
  */
-class GankGirlsFragment : BaseRvFragment(), GankGenericeContract.Veiw {
+class GankGirlsFragment : BaseRvFragment() {
+    override fun againLoadData() {
+        mPresenter.start(this.mLoadType, mLoadStatus)
+
+        println("=======================点击重新加载 ")
+
+    }
 
     private var mPresenter = GankGenericePresenter(this)
     private lateinit var mAdapter: BaseRvAdapter<Meizi>
@@ -31,23 +37,24 @@ class GankGirlsFragment : BaseRvFragment(), GankGenericeContract.Veiw {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mPresenter.start(this.mLoadType, Constract().loadDataStatus)
+        mPresenter.start(this.mLoadType, mLoadStatus)
 
     }
 
     override fun loadData(list: ArrayList<Meizi>) {
+        mErrorView.visibility = View.GONE
         mAdapter = GirlsAdapter(activity, list)
         val recyclerView = getRecyclerView(2, mAdapter)
         mFagContent.addView(recyclerView)
         mSwipeRefresh.isRefreshing = false
+        mFagContent.visibility = View.VISIBLE
 
     }
-
 
     /**
      * 下拉刷新
      */
-    override fun refreshData() {
+    override fun onRefreshData() {
         mPresenter.loadData(size, page, mLoadType, Constract().refreshDataStatus)
     }
 
@@ -56,8 +63,7 @@ class GankGirlsFragment : BaseRvFragment(), GankGenericeContract.Veiw {
      */
     override fun refreshData(list: ArrayList<Meizi>) {
         mAdapter.clear()
-        mAdapter.AddHeader(list)
-        mAdapter.notifyDataSetChanged()
+        mAdapter.addHeader(list)
 
     }
 
@@ -72,17 +78,11 @@ class GankGirlsFragment : BaseRvFragment(), GankGenericeContract.Veiw {
      * 上拉加载更多回调数据
      */
     override fun loadMoreData(list: ArrayList<Meizi>) {
-        mAdapter.AddFooter(list)
-        mAdapter.notifyDataSetChanged()
+        mAdapter.addFooter(list)
     }
 
-    override fun loadError() {
-    }
 
-    override fun loadNormal() {
-    }
-
-    override fun setPresenter(presenter: GankGenericeContract.Presenter) {
+    override fun setPresenter(presenter: BasePresenter) {
         mPresenter = presenter as GankGenericePresenter
     }
 

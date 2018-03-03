@@ -1,5 +1,6 @@
 package com.yibao.gankkotlin.vp.home
 
+import com.yibao.gankkotlin.base.BaseRvFragment
 import com.yibao.gankkotlin.model.HomeRemote
 import com.yibao.gankkotlin.model.HomeSource
 import com.yibao.gankkotlin.model.Meizi
@@ -16,7 +17,7 @@ import com.yibao.gankkotlin.util.Constract
  *  @创建时间:  2018/1/12 20:40
  *  @描述：    {TODO}
  */
-class HomeFragmentPresenter(private val mView: HomeFragmentContract.Veiw) : HomeFragmentContract.Presenter {
+class HomeFragmentPresenter(private val mView: BaseRvFragment) : HomeFragmentContract.Presenter {
 
     private val homeRemote = HomeRemote()
 
@@ -26,13 +27,14 @@ class HomeFragmentPresenter(private val mView: HomeFragmentContract.Veiw) : Home
 
     override fun start(loadType: String, loadStatus: Int) {}
 
-    override fun getDate(position: Int) {
+    override fun getDate(position: Int, loadStatus: Int) {
         homeRemote.getGankHistoryDate(position, object : HomeSource.GankHistoryCallbak {
             override fun loadHistoryDate(timeDate: TimeDate) {
-                mView.loadHistoryDate(timeDate)
+                loadData(timeDate.year, timeDate.month, timeDate.day, loadStatus)
             }
 
             override fun onDataNotAvailable() {
+                mView.loadNormal()
 
             }
 
@@ -51,7 +53,7 @@ class HomeFragmentPresenter(private val mView: HomeFragmentContract.Veiw) : Home
             }
 
             override fun onDataNotAvailable() {
-
+                mView.loadError()
             }
 
         })

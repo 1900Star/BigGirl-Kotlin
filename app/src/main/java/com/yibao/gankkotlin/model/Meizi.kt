@@ -94,13 +94,9 @@ data class Meizi(val _id: String,
     }
 
     companion object CREATOR : Parcelable.Creator<Meizi> {
-        override fun createFromParcel(parcel: Parcel): Meizi {
-            return Meizi(parcel)
-        }
+        override fun createFromParcel(parcel: Parcel): Meizi = Meizi(parcel)
 
-        override fun newArray(size: Int): Array<Meizi?> {
-            return arrayOfNulls(size)
-        }
+        override fun newArray(size: Int): Array<Meizi?> = arrayOfNulls(size)
     }
 
 

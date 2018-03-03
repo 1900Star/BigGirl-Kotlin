@@ -1,8 +1,6 @@
 package com.yibao.gankkotlin.vp.gank.app
 
 import com.yibao.gankkotlin.base.BasePresenter
-import com.yibao.gankkotlin.base.BaseView
-import com.yibao.gankkotlin.model.Meizi
 
 
 /**
@@ -15,13 +13,13 @@ import com.yibao.gankkotlin.model.Meizi
  *  @描述：    {TODO}
  */
 interface GankGenericeContract {
-    interface Veiw : BaseView<Presenter> {
-        fun loadData(list: ArrayList<Meizi>)
-        fun loadMoreData(list: ArrayList<Meizi>)
-        fun refreshData(list: ArrayList<Meizi>)
-        fun loadError()
-        fun loadNormal()
-    }
+//    interface Veiw : BaseView<Presenter> {
+//        fun loadData(list: ArrayList<Meizi>)
+//        fun loadMoreData(list: ArrayList<Meizi>)
+//        fun onRefreshData(list: ArrayList<Meizi>)
+//        fun loadError()
+//        fun loadNormal()
+//    }
 
     interface Presenter : BasePresenter {
         fun loadData(size: Int, page: Int, loadType: String, loadStatus: Int)

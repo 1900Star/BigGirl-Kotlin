@@ -2,7 +2,9 @@ package com.yibao.gankkotlin.model
 
 import com.yibao.gankkotlin.network.RetrofitHelper
 import com.yibao.gankkotlin.util.Constract
+import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 
@@ -18,17 +20,34 @@ import io.reactivex.schedulers.Schedulers
 class GankGenericeRemote : GankGenericeSource {
 
 
+
     override fun getGankGenericeData(page: Int, size: Int, loadType: String, callBack: GankGenericeSource.GankGenericeLoadCallbak) {
         RetrofitHelper().getGankApi(Constract().gankBaseUrl)
                 .getGril(loadType, size, page)
                 .subscribeOn(Schedulers.io())
                 .map { it.results }
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { callBack.loadData(it) }
+                .subscribe(object : Observer<ArrayList<Meizi>> {
+                    override fun onNext(t: ArrayList<Meizi>) {
+                        callBack.loadData(t)
+                    }
+
+                    override fun onSubscribe(d: Disposable) {
+                    }
+
+
+                    override fun onError(e: Throwable) {
+                        callBack.onDataNotAvailable()
+
+                    }
+
+                    override fun onComplete() {
+
+                    }
+                })
 
 
     }
-
 
 
 }

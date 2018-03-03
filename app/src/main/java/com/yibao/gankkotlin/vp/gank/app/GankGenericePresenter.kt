@@ -1,5 +1,6 @@
 package com.yibao.gankkotlin.vp.gank.app
 
+import com.yibao.gankkotlin.base.BaseRvFragment
 import com.yibao.gankkotlin.model.GankGenericeRemote
 import com.yibao.gankkotlin.model.GankGenericeSource
 import com.yibao.gankkotlin.model.Meizi
@@ -15,7 +16,7 @@ import com.yibao.gankkotlin.util.Constract
  *  @创建时间:  2018/1/12 20:40
  *  @描述：    {TODO}
  */
-class GankGenericePresenter(private val mView: GankGenericeContract.Veiw) : GankGenericeContract.Presenter {
+class GankGenericePresenter(private val mView: BaseRvFragment) : GankGenericeContract.Presenter {
     private val gankRemote = GankGenericeRemote()
 
     init {
@@ -37,7 +38,7 @@ class GankGenericePresenter(private val mView: GankGenericeContract.Veiw) : Gank
             }
 
             override fun onDataNotAvailable() {
-                mView.loadNormal()
+                mView.loadError()
             }
         })
 

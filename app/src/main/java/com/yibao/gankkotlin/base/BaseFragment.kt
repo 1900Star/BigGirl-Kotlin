@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.yibao.gankkotlin.util.NetworkUtil
 
 
 /**
@@ -25,6 +26,7 @@ abstract class BaseFragment : Fragment() {
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
+        val networkConnected = NetworkUtil().isNetworkConnected(activity)
         if (isResumed) {
             viewStatusProcessing(isVisibleToUser)
         }

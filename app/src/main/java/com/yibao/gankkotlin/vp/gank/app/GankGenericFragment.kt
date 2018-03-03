@@ -1,6 +1,8 @@
 package com.yibao.gankkotlin.vp.gank.app
 
 import android.os.Bundle
+import android.view.View
+import com.yibao.gankkotlin.base.BasePresenter
 import com.yibao.gankkotlin.base.BaseRvAdapter
 import com.yibao.gankkotlin.base.BaseRvFragment
 import com.yibao.gankkotlin.model.Meizi
@@ -16,7 +18,10 @@ import com.yibao.gankkotlin.util.Constract
  *  @创建时间:  2018/1/12 17:20
  *  @描述：    {TODO}
  */
-class GankGenericFragment : BaseRvFragment(), GankGenericeContract.Veiw {
+class GankGenericFragment : BaseRvFragment() {
+    override fun againLoadData() {
+        mPresenter.start(this.mLoadType, Constract().loadDataStatus)
+    }
 
     private var mPresenter = GankGenericePresenter(this)
     private lateinit var mAdapter: BaseRvAdapter<Meizi>
@@ -31,32 +36,26 @@ class GankGenericFragment : BaseRvFragment(), GankGenericeContract.Veiw {
     }
 
     override fun loadData(list: ArrayList<Meizi>) {
+        mErrorView.visibility = View.GONE
         mAdapter = GankGenericeAdapter(activity, list)
-        val recyclerView = getRecyclerView( 1, mAdapter)
+        val recyclerView = getRecyclerView(1, mAdapter)
         mFagContent.addView(recyclerView)
         mSwipeRefresh.isRefreshing = false
+        mFagContent.visibility = View.VISIBLE
     }
 
     override fun loadMoreData(list: ArrayList<Meizi>) {
-        mAdapter.AddFooter(list)
-        mAdapter.notifyDataSetChanged()
+        mAdapter.addFooter(list)
     }
 
     override fun refreshData(list: ArrayList<Meizi>) {
         mAdapter.clear()
-        mAdapter.AddHeader(list)
-        mAdapter.notifyDataSetChanged()
+        mAdapter.addHeader(list)
 
     }
 
-    override fun loadError() {
-    }
 
-    override fun loadNormal() {
-    }
-
-
-    override fun refreshData() {
+    override fun onRefreshData() {
         mPresenter.loadData(size, page, mLoadType, Constract().refreshDataStatus)
     }
 
@@ -64,7 +63,7 @@ class GankGenericFragment : BaseRvFragment(), GankGenericeContract.Veiw {
         mPresenter.loadData(size, page, this.mLoadType, Constract().loadDataMore)
     }
 
-    override fun setPresenter(presenter: GankGenericeContract.Presenter) {
+    override fun setPresenter(presenter: BasePresenter) {
         mPresenter = presenter as GankGenericePresenter
     }
 

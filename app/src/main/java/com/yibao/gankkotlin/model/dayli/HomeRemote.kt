@@ -1,10 +1,13 @@
 package com.yibao.gankkotlin.model
 
 import com.yibao.gankkotlin.model.dayli.ResultBeans
+import com.yibao.gankkotlin.model.dayli.TimeDate
 import com.yibao.gankkotlin.network.RetrofitHelper
 import com.yibao.gankkotlin.util.Constract
 import com.yibao.gankkotlin.util.StringUtil
+import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 
@@ -26,9 +29,27 @@ class HomeRemote : HomeSource {
                 .map { it.results }
                 .map { StringUtil().getHistoryDate(it[position]) }
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    callBack.loadHistoryDate(it)
-                }
+                .subscribe(object : Observer<TimeDate> {
+                    override fun onNext(t: TimeDate) {
+                        callBack.loadHistoryDate(t)
+                    }
+
+                    override fun onSubscribe(d: Disposable) {
+
+                    }
+
+
+                    override fun onError(e: Throwable) {
+                        callBack.onDataNotAvailable()
+
+                    }
+
+                    override fun onComplete() {
+
+                    }
+                })
+
+
     }
 
     override fun getGankDayData(year: String, month: String, day: String, callBack: HomeSource.GankDayLoadCallbak) {
@@ -37,10 +58,25 @@ class HomeRemote : HomeSource {
                 .subscribeOn(Schedulers.io())
                 .map { addData(it.results!!) }
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    callBack.loadData(it as ArrayList<Meizi>)
-                }
+                .subscribe(object : Observer<List<Meizi>> {
+                    override fun onNext(t: List<Meizi>) {
+                        callBack.loadData(t as ArrayList<Meizi>)
+                    }
 
+                    override fun onSubscribe(d: Disposable) {
+
+                    }
+
+
+                    override fun onError(e: Throwable) {
+                        callBack.onDataNotAvailable()
+
+                    }
+
+                    override fun onComplete() {
+
+                    }
+                })
 
     }
 
