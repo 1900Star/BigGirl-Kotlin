@@ -1,10 +1,7 @@
 ﻿
 
-![image](https://github.com/1900Star/OkStar/blob/master/Screenshot/kotlin3.png)
-![image](https://github.com/1900Star/OkStar/blob/master/Screenshot/kotlin2.png)
-![image](https://github.com/1900Star/OkStar/blob/master/Screenshot/kotlin1.png)
-![image](https://github.com/1900Star/OkStar/blob/master/Screenshot/kotlin4.png)
-![image](https://github.com/1900Star/OkStar/blob/master/Screenshot/kotlin5.png)
+![image](https://upload-images.jianshu.io/upload_images/5028465-b40842ab8b1aeb19.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image](https://upload-images.jianshu.io/upload_images/5028465-f51c0acf270ee79b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 BigGirl-Kotlin
 
