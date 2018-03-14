@@ -1,7 +1,7 @@
 package com.yibao.gankkotlin.model
 
-import com.yibao.gankkotlin.model.dayli.ResultBeans
-import com.yibao.gankkotlin.model.dayli.TimeDate
+import com.yibao.gankkotlin.model.home.ResultBeans
+import com.yibao.gankkotlin.model.home.TimeDate
 import com.yibao.gankkotlin.network.RetrofitHelper
 import com.yibao.gankkotlin.util.Constract
 import com.yibao.gankkotlin.util.StringUtil
@@ -21,6 +21,42 @@ import io.reactivex.schedulers.Schedulers
  *  @描述：    {TODO}
  */
 class HomeRemote : HomeSource {
+
+    fun getGankHistoryDates(position: Int, callBack: HomeSource.GankHistoryCallbak) {
+        RetrofitHelper().getGankApi(Constract().gankBaseUrl)
+        RetrofitHelper ().getGankApi(Constract().gankBaseUrl)
+                .getGankHistoryDate(Constract().gankHistory)
+                .subscribeOn(Schedulers.io())
+                .map { it.results }
+                .map { StringUtil().getHistoryDate(it[position]) }
+//                .flatMap(Function {  })
+
+
+
+
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : Observer<TimeDate> {
+                    override fun onNext(t: TimeDate) {
+                        callBack.loadHistoryDate(t)
+                    }
+
+                    override fun onSubscribe(d: Disposable) {
+
+                    }
+
+
+                    override fun onError(e: Throwable) {
+                        callBack.onDataNotAvailable()
+
+                    }
+
+                    override fun onComplete() {
+
+                    }
+                })
+
+
+    }
 
     override fun getGankHistoryDate(position: Int, callBack: HomeSource.GankHistoryCallbak) {
         RetrofitHelper().getGankApi(Constract().gankBaseUrl)

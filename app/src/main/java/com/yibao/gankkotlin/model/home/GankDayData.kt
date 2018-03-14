@@ -1,4 +1,4 @@
-package com.yibao.gankkotlin.model.dayli
+package com.yibao.gankkotlin.model.home
 
 /**
  * @项目名： BigGirl

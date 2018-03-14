@@ -4,7 +4,7 @@ import com.yibao.gankkotlin.base.BaseRvFragment
 import com.yibao.gankkotlin.model.HomeRemote
 import com.yibao.gankkotlin.model.HomeSource
 import com.yibao.gankkotlin.model.Meizi
-import com.yibao.gankkotlin.model.dayli.TimeDate
+import com.yibao.gankkotlin.model.home.TimeDate
 import com.yibao.gankkotlin.util.Constract
 
 

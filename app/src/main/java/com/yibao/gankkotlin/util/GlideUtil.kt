@@ -24,4 +24,13 @@ class GlideUtil {
                 .into(image)
 
     }
+
+    fun loadPics(url: String, image: ImageView) {
+        Glide.with(image.context).load(url).asBitmap()
+                .error(R.mipmap.star)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .into(image)
+
+    }
+
 }

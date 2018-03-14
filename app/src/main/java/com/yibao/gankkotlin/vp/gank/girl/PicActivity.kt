@@ -128,6 +128,8 @@ class PicActivity : ToolbarActivity(), GirlPagerAdapter.OnGirlClickListener, Vie
                     Constract().EXISTS -> SnakbarUtil().picAlreadyExists(vp_pic)
                     Constract().DWON_PIC_EROOR -> SnakbarUtil().showDownPicFail(vp_pic)
                 }
+
+
             }
         } else {
             SnakbarUtil().netErrors(vp_pic)
@@ -141,7 +143,6 @@ class PicActivity : ToolbarActivity(), GirlPagerAdapter.OnGirlClickListener, Vie
         } else {
             iv_down.visibility = android.view.View.VISIBLE
         }
-
     }
 
     /**
@@ -160,12 +161,9 @@ class PicActivity : ToolbarActivity(), GirlPagerAdapter.OnGirlClickListener, Vie
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
-
     public override fun onPause() {
         super.onPause()
         menuAutoPlayItem.setIcon(R.drawable.btn_playing_play)
         pagerScroller.duration = 300
     }
-
-
 }

@@ -88,14 +88,11 @@ class HomeAdatper(context: Context, list: ArrayList<Meizi>) : BaseRvAdapter<Meiz
         @RequiresApi(Build.VERSION_CODES.N)
         fun setData(context: Context, meizi: Meizi) {
             category.text = meizi.type
-
-//            content.text = Html.fromHtml("<a href=\""
-//                    + meizi.url + "\">"
-//                    + meizi.desc + "</a>"
-//                    + "[" + meizi.who + "]", Html.FROM_HTML_MODE_LEGACY)
             val mWho = if ("null" == meizi.who) "1900" else meizi.who
             val des = meizi.desc + "  [" + mWho + "]"
-            val girl = "有福利-_-点击查看"
+            val createdTime = meizi.createdAt
+            val girlDate = createdTime.substring(0, createdTime.lastIndexOf("T"))
+            val girl = "$girlDate  有福利-_-点击查看"
             content.text = if (meizi.type == Constract().gankFuli) girl else des
             content.movementMethod = LinkMovementMethod.getInstance()
             content.setOnClickListener {

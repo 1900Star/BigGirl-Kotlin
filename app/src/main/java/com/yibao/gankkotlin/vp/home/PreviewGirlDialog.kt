@@ -45,7 +45,7 @@ class PreviewGirlDialog : DialogFragment() {
         progressBtn = view.findViewById(R.id.pb_save) as ProgressBtn
         imageUrl = arguments.getString("url")
         val image = ImageUtil().creatZoomView(activity)
-        GlideUtil().loadPic(imageUrl, image)
+        GlideUtil().loadPics(imageUrl, image)
         progressBtn.setMax(maxDownProgress)
         tvSave.setOnClickListener { saveGirl() }
         image.setOnClickListener { this.dismiss() }

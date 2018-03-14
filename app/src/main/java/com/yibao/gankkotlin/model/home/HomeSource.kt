@@ -1,6 +1,6 @@
 package com.yibao.gankkotlin.model
 
-import com.yibao.gankkotlin.model.dayli.TimeDate
+import com.yibao.gankkotlin.model.home.TimeDate
 
 
 /**
@@ -13,12 +13,15 @@ import com.yibao.gankkotlin.model.dayli.TimeDate
  *  @描述：    {TODO}
  */
 interface HomeSource {
+
+
     interface GankDayLoadCallbak {
         fun loadData(list: ArrayList<Meizi>)
         fun onDataNotAvailable()
     }
 
     fun getGankDayData(year: String, month: String, day: String, callBack: GankDayLoadCallbak)
+
 
 
     interface GankHistoryCallbak {

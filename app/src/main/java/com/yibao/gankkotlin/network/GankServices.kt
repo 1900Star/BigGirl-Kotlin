@@ -1,8 +1,8 @@
 package com.yibao.gankkotlin.network
 
 import com.yibao.gankkotlin.model.Meizi
-import com.yibao.gankkotlin.model.dayli.GankDayData
-import com.yibao.gankkotlin.model.dayli.RemoteData
+import com.yibao.gankkotlin.model.home.GankDayData
+import com.yibao.gankkotlin.model.home.RemoteData
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -13,7 +13,7 @@ class PagerScroller(context: Context) : Scroller(context) {
 
     private var mScrollDuration: Int = 0
 
-    fun setDuration(duration: Int) {
+     fun setDuration(duration: Int) {
         this.mScrollDuration = duration
     }
 

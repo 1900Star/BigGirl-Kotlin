@@ -34,6 +34,8 @@ class ImageUtil {
 
 
     fun savaPic(context: Context, url: String): Observable<Int> {
+
+
         return create({
             name = getNameFromUrl(url)
 
@@ -49,7 +51,8 @@ class ImageUtil {
 
                 } catch (e: IOException) {
                     e.printStackTrace()
-                    it.onError(e)
+                    it.onNext(Constract().DWON_PIC_EROOR)
+                    it.onComplete()
                 }
                 val request = Request.Builder().url(url).addHeader("Accept-Encoding", "identity")
                         .build()
@@ -59,7 +62,7 @@ class ImageUtil {
                             override fun onFailure(call: Call, e: IOException) {
                                 e.printStackTrace()
                                 it.onNext(Constract().DWON_PIC_EROOR)
-                                it.onError(e)
+                                it.onComplete()
                                 println("下载出错 " + e.toString())
                             }
 
@@ -68,14 +71,14 @@ class ImageUtil {
                                 val buffer = ByteArray(1024 * 4)
                                 var fos: FileOutputStream? = null
                                 val total = response.body()!!.contentLength()
-                                var sum: Long = 0
+                                var sum = 0
                                 var len = 0
                                 val off = 0
                                 try {
                                     fos = FileOutputStream(file)
                                     while (inputStream.read(buffer).apply { len = this } > 0) {
                                         fos.write(buffer, off, len)
-                                        sum += len.toLong()
+                                        sum += len
                                         val progress = (sum * 1.0f / total * 100).toInt()
                                         //  Rxbus发送下载进度
                                         RxBus.post(DownGrilProgressData(progress))
@@ -85,7 +88,7 @@ class ImageUtil {
                                 } catch (e: IOException) {
                                     e.printStackTrace()
                                     it.onNext(Constract().DWON_PIC_EROOR)
-                                    it.onError(e)
+                                    it.onComplete()
                                 } finally {
                                     try {
                                         fos!!.close()
@@ -112,7 +115,7 @@ class ImageUtil {
         val view = ZoomImageView(context)
         val params = ViewGroup.LayoutParams(1080, 1920)
         view.scaleType = ImageView.ScaleType.MATRIX
-        view.reSetState()
+        view.isEnabled = true
         view.layoutParams = params
         return view
     }

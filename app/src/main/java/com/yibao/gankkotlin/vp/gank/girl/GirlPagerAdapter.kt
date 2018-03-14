@@ -5,6 +5,7 @@ import android.support.v4.view.PagerAdapter
 import android.view.View
 import android.view.ViewGroup
 import com.yibao.gankkotlin.model.Meizi
+import com.yibao.gankkotlin.util.AnimationUtil
 import com.yibao.gankkotlin.util.GlideUtil
 import com.yibao.gankkotlin.util.ImageUtil
 
@@ -39,12 +40,14 @@ class GirlPagerAdapter(private val context: Context, private val list: ArrayList
 
         val view = ImageUtil().creatZoomView(context)
         val url = list!![position].url
-        GlideUtil().loadPic(url, view)
+        GlideUtil().loadPics(url, view)
+
         view.setOnClickListener({
             if (context is OnGirlClickListener) {
                 (context as OnGirlClickListener).hintToolbar()
             }
         })
+        AnimationUtil().applyBobbleAnim(view)
         container.addView(view)
         return view
     }

@@ -16,13 +16,7 @@ interface GankGenericeSource {
         fun onDataNotAvailable()
     }
 
-    interface GankDayLoadCallbak {
-        fun loadData(list: ArrayList<Meizi>)
-        fun onDataNotAvailable()
-    }
-
     fun getGankGenericeData(page: Int, size: Int, loadType: String, callBack: GankGenericeLoadCallbak)
-
 
 
 }
