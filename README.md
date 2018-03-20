@@ -17,7 +17,7 @@ BigGirl-Kotlin
   * [Glide](https://github.com/bumptech/glide)
   * [OkHttp](https://github.com/square/okhttp)
   * [retrofit](https://github.com/square/retrofit)
-  * [BigGirl](https://github.com/1900Star/BigGirl) 我的另一个Java  Gank客户端,感兴趣的可以看一下。
+  * [BigGirl](https://github.com/1900Star/BigGirl) BigGirl-Java  Gank客户端,感兴趣的可以看一下。
 
 
 # 感谢
