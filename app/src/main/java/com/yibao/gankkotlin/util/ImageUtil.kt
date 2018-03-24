@@ -101,6 +101,7 @@ class ImageUtil {
                 it.onNext(Constract().FIRST_DWON)
                 it.onComplete()
                 MediaScannerConnection.scanFile(context, arrayOf(file.absolutePath), null, null)
+                println("=========================插入图片到相册成功")
             } else {
                 it.onNext(Constract().EXISTS)
                 it.onComplete()

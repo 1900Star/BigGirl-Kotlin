@@ -7,14 +7,14 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.yibao.gankkotlin.R
-import com.yibao.gankkotlin.base.OnLongTouthPreviewListener
+import com.yibao.gankkotlin.base.listener.OnLongTouthPreviewListener
+import com.yibao.gankkotlin.base.listener.OnTabbarVisibleListener
 import com.yibao.gankkotlin.util.GlideUtil
 import com.yibao.gankkotlin.vp.home.PreviewGirlDialog
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : AppCompatActivity(), OnLongTouthPreviewListener {
-    private var isShowBttom: Boolean = true
+class MainActivity : AppCompatActivity(), OnLongTouthPreviewListener, OnTabbarVisibleListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -70,18 +70,12 @@ class MainActivity : AppCompatActivity(), OnLongTouthPreviewListener {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        return if (id == R.id.action_settings) {
-            if (isShowBttom) {
-                bottom_gank.visibility = View.INVISIBLE
-                isShowBttom = false
-            } else {
-                bottom_gank.visibility = View.VISIBLE
-                isShowBttom = true
-            }
-            true
-        } else super.onOptionsItemSelected(item)
+    override fun showAndHintTabbar(isShowTabbar: Boolean) {
+        if (isShowTabbar) {
+            bottom_gank.visibility = View.VISIBLE
+        } else {
+            bottom_gank.visibility = View.INVISIBLE
+        }
     }
 
 }

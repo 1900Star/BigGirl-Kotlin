@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.yibao.gankkotlin.R
 import com.yibao.gankkotlin.base.BaseRvAdapter
-import com.yibao.gankkotlin.base.OnLongTouthPreviewListener
+import com.yibao.gankkotlin.base.listener.OnLongTouthPreviewListener
 import com.yibao.gankkotlin.model.Meizi
 import com.yibao.gankkotlin.vp.gank.girl.PicActivity
 

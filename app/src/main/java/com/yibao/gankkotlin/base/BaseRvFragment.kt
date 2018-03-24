@@ -10,7 +10,9 @@ import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.yibao.gankkotlin.R
+import com.yibao.gankkotlin.base.listener.OnTabbarVisibleListener
 import com.yibao.gankkotlin.factroy.RecyclerFactory
 import com.yibao.gankkotlin.util.Constract
 import io.reactivex.Observable
@@ -75,6 +77,8 @@ abstract class BaseRvFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshList
                 var lastPosition = -1
                 when (newState) {
                     RecyclerView.SCROLL_STATE_IDLE -> {
+                        Glide.with(activity).resumeRequests()
+                        controlTabbarVisible(true)
                         val layoutManager = recyclerView!!.layoutManager
                         //通过LayoutManager找到当前显示的最后的item的position
                         when (layoutManager) {
@@ -89,12 +93,18 @@ abstract class BaseRvFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshList
                         }
                         if (lastPosition == recyclerView.layoutManager
                                         .itemCount - 1) {
+                            controlTabbarVisible(false)
                             mLoadStatus = Constract().loadDataMore
                             page++
                             mPostition++
                             loadMoreData()
+                            controlTabbarVisible(true)
 
                         }
+                    }
+                    RecyclerView.SCROLL_STATE_SETTLING, RecyclerView.SCROLL_STATE_DRAGGING -> {
+                        Glide.with(activity).pauseRequests()
+                        controlTabbarVisible(false)
                     }
 
                 }
@@ -127,6 +137,13 @@ abstract class BaseRvFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshList
 
         return recyclerView
     }
+
+    private fun controlTabbarVisible(isShowTabbar: Boolean) {
+        if (activity is OnTabbarVisibleListener) {
+            (activity as OnTabbarVisibleListener).showAndHintTabbar(isShowTabbar)
+        }
+    }
+
 
     /**
      * 下拉刷新

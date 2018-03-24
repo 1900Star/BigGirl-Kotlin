@@ -11,4 +11,6 @@ package com.yibao.gankkotlin.base.listener
  *  @描述：    {TODO}
  */
 interface OnTabbarVisibleListener {
+    fun showAndHintTabbar(isShowTabbar: Boolean)
+
 }

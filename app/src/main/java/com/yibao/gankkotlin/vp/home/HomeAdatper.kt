@@ -12,7 +12,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.yibao.gankkotlin.R
 import com.yibao.gankkotlin.base.BaseRvAdapter
-import com.yibao.gankkotlin.base.OnLongTouthPreviewListener
+import com.yibao.gankkotlin.base.listener.OnLongTouthPreviewListener
 import com.yibao.gankkotlin.model.Meizi
 import com.yibao.gankkotlin.util.Constract
 import com.yibao.gankkotlin.vp.web.WebActivity

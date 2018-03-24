@@ -46,7 +46,6 @@ class HomeFragment : BaseRvFragment() {
 
     override fun onRefreshData() {
         mPresenter.getDate(0, mLoadStatus)
-
     }
 
     override fun loadMoreData() {

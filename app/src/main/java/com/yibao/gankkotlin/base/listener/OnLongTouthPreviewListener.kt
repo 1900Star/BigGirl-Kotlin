@@ -1,4 +1,4 @@
-package com.yibao.gankkotlin.base
+package com.yibao.gankkotlin.base.listener
 
 
 /**
