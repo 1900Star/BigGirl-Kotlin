@@ -18,7 +18,7 @@ import com.yibao.gankkotlin.util.Constract
  */
 class GankFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = View.inflate(activity, R.layout.fragment_gank, null)
         initView(view)
         return view

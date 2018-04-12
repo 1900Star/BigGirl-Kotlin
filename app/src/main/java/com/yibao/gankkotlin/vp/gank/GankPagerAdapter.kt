@@ -13,20 +13,20 @@ import com.yibao.gankkotlin.util.Constract
  * Des：${TODO}
  * Time:2017/10/20 02:52
  */
-class GankPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+class GankPagerAdapter(fm: FragmentManager?) : FragmentStatePagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment? = FragmentFactory().createFragment(position)
     override fun getCount(): Int = Constract().staarrTitle.size
 
 
-    override fun isViewFromObject(view: View?, `object`: Any): Boolean =
+    override fun isViewFromObject(view: View, `object`: Any): Boolean =
             (`object` as Fragment).view === view
 
 
     override fun getPageTitle(position: Int): CharSequence? = Constract().staarrTitle[position]
 
 
-    override fun destroyItem(container: ViewGroup?, position: Int, `object`: Any) {
+    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
         super.destroyItem(container, position, `object`)
     }
 }

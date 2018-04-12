@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
  *  @包名：
  *  @文件名:   com.yibao.mykotlin.MyApplication
  *  @author:   Stran
- *  @Email:   www.strangermy@outlook.com / www.stranger98@gmail.com
+ *  @Email:   www.strangermy@outlook.com / www.strangermy98@gmail.com
  *  @创建时间:  2018/1/12 16:00
  *  @描述：    {TODO}
  */

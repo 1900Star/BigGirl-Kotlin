@@ -1,6 +1,7 @@
 package com.yibao.gankkotlin.base
 
 import android.content.Context
+import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
@@ -19,7 +20,7 @@ import com.yibao.gankkotlin.R
  *  @创建时间:  2018/1/12 14:59
  *  @描述：    {TODO}
  */
-abstract class BaseRvAdapter<T>(context: Context, list: MutableList<T>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+abstract class BaseRvAdapter<T>(context: Context?, list: MutableList<T>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val minItemNum = 10
     protected abstract val layoutId: Int
     protected var mContext = context

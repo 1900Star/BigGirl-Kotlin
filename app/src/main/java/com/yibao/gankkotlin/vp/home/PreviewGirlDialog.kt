@@ -29,7 +29,7 @@ class PreviewGirlDialog : DialogFragment() {
     private lateinit var imageUrl: String
     private val maxDownProgress = 100
     private lateinit var progressBtn: ProgressBtn
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.window!!
                 .setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -43,9 +43,9 @@ class PreviewGirlDialog : DialogFragment() {
         val contentView = view.findViewById(R.id.preview_girl_content) as LinearLayout
         val tvSave = view.findViewById(R.id.tv_save) as TextView
         progressBtn = view.findViewById(R.id.pb_save) as ProgressBtn
-        imageUrl = arguments.getString("url")
-        val image = ImageUtil().creatZoomView(activity)
-        GlideUtil().loadPics(imageUrl, image)
+        imageUrl = arguments?.getString("url")!!
+        val image = activity?.let { ImageUtil().creatZoomView(it) }
+        GlideUtil().loadPics(imageUrl, image!!)
         progressBtn.setMax(maxDownProgress)
         tvSave.setOnClickListener { saveGirl() }
         image.setOnClickListener { this.dismiss() }

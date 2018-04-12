@@ -1,6 +1,6 @@
 package com.yibao.gankkotlin.factroy
 
-import android.content.Context
+import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
@@ -20,7 +20,7 @@ class RecyclerFactory {
     private val RECYCLERVIEW_NORMAL = 1
     private val RECYCLERVIEW_STAGGERED = 2
 
-    fun creatRecyclerView(context:Context,type: Int,
+    fun creatRecyclerView(context: FragmentActivity?, type: Int,
                           adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>): RecyclerView {
         val recyclerView = RecyclerView(context)
         if (type == RECYCLERVIEW_NORMAL) {

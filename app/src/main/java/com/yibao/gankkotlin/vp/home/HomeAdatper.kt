@@ -36,7 +36,7 @@ class HomeAdatper(context: Context, list: ArrayList<Meizi>) : BaseRvAdapter<Meiz
     override fun bindView(holder: RecyclerView.ViewHolder, t: Meizi) {
         if (holder is HomeViewHolder) {
             categoryType(holder, t)
-            holder.setData(mContext, t)
+            mContext?.let { holder.setData(it, t) }
         }
     }
 

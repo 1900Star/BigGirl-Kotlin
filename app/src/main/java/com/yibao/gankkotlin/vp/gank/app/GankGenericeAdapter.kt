@@ -1,7 +1,7 @@
 package com.yibao.gankkotlin.vp.gank.app
 
-import android.content.Context
 import android.content.Intent
+import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
@@ -24,7 +24,7 @@ import com.yibao.gankkotlin.vp.web.WebActivity
  *  @创建时间:  2018/1/12 21:38
  *  @描述：    {TODO}
  */
-class GankGenericeAdapter(val context: Context, list: ArrayList<Meizi>) : BaseRvAdapter<Meizi>(context, list) {
+class GankGenericeAdapter(val context: FragmentActivity?, list: ArrayList<Meizi>) : BaseRvAdapter<Meizi>(context, list) {
     override val layoutId: Int
         get() = R.layout.item_generice_frag
 
@@ -47,7 +47,7 @@ class GankGenericeAdapter(val context: Context, list: ArrayList<Meizi>) : BaseRv
         private var gankTime: TextView = itemView.findViewById(R.id.tv_generice_time)
         private var gankType: TextView = itemView.findViewById(R.id.tv_generice_type)
 
-        fun setData(context: Context, meizi: Meizi) {
+        fun setData(context: FragmentActivity?, meizi: Meizi) {
             val createdTime = meizi.createdAt
             val images = meizi.images
             if (!(images == null || images.isEmpty())) {
@@ -66,7 +66,7 @@ class GankGenericeAdapter(val context: Context, list: ArrayList<Meizi>) : BaseRv
             gankRl.setOnClickListener {
                 val intent = Intent(context, WebActivity::class.java)
                 intent.putExtra("url", meizi.url)
-                context.startActivity(intent)
+                context?.startActivity(intent)
             }
         }
 

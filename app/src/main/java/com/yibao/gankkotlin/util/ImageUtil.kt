@@ -2,7 +2,10 @@ package com.yibao.gankkotlin.util
 
 import android.content.Context
 import android.media.MediaScannerConnection
+import android.os.Build
 import android.os.Environment
+import android.support.annotation.RequiresApi
+import android.support.v4.app.FragmentActivity
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.yibao.gankkotlin.MyApplication
@@ -33,7 +36,8 @@ class ImageUtil {
     private lateinit var file: File
 
 
-    fun savaPic(context: Context, url: String): Observable<Int> {
+    @RequiresApi(Build.VERSION_CODES.FROYO)
+    fun savaPic(context: FragmentActivity?, url: String): Observable<Int> {
 
 
         return create({
@@ -85,6 +89,10 @@ class ImageUtil {
                                     }
                                     fos.flush()
                                     fos.close()
+                                    it.onNext(Constract().FIRST_DWON)
+                                    it.onComplete()
+                                    MediaScannerConnection.scanFile(context, arrayOf(file.absolutePath), null, null)
+                                    println("=========================插入图片到相册成功")
                                 } catch (e: IOException) {
                                     e.printStackTrace()
                                     it.onNext(Constract().DWON_PIC_EROOR)
@@ -98,14 +106,11 @@ class ImageUtil {
                                 }
                             }
                         })
-                it.onNext(Constract().FIRST_DWON)
-                it.onComplete()
-                MediaScannerConnection.scanFile(context, arrayOf(file.absolutePath), null, null)
-                println("=========================插入图片到相册成功")
+
             } else {
                 it.onNext(Constract().EXISTS)
                 it.onComplete()
-            }
+        }
 
         })
 

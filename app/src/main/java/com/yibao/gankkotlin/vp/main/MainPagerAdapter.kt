@@ -19,10 +19,10 @@ class MainPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
     override fun getCount(): Int = 3
 
 
-    override fun isViewFromObject(view: View?, `object`: Any): Boolean =
+    override fun isViewFromObject(view: View, `object`: Any): Boolean =
             (`object` as Fragment).view === view
 
-    override fun destroyItem(container: ViewGroup?, position: Int, `object`: Any) {
+    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
         super.destroyItem(container, position, `object`)
     }
 }

@@ -36,7 +36,7 @@ class HomeFragment : BaseRvFragment() {
         mErrorView.visibility = View.GONE
         val url = list[0].url
         ((activity) as MainActivity).setCllospingImage(url)
-        mAdapter = HomeAdatper(activity, list)
+        mAdapter = HomeAdatper(activity as MainActivity, list)
         val recyclerView = getRecyclerView(1, mAdapter)
         mFagContent.addView(recyclerView)
         mSwipeRefresh.isRefreshing = false

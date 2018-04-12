@@ -26,7 +26,7 @@ class GankGenericFragment : BaseRvFragment() {
     private var mPresenter = GankGenericePresenter(this)
     private lateinit var mAdapter: BaseRvAdapter<Meizi>
     override fun processLogic(savedInstanceState: Bundle?) {
-        val position = arguments.getInt("position")
+        val position = arguments?.getInt("position")
         mLoadType = Constract().getLoadType(position)!!
     }
 

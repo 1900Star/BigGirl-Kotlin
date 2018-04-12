@@ -28,11 +28,11 @@ class GankGirlsFragment : BaseRvFragment() {
     private lateinit var mAdapter: BaseRvAdapter<Meizi>
 
     override fun processLogic(savedInstanceState: Bundle?) {
-        val position = arguments.getInt("position")
+        val position = arguments?.getInt("position")
         mLoadType = Constract().getLoadType(position)!!
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mPresenter.start(this.mLoadType, mLoadStatus)
 

@@ -1,7 +1,7 @@
 package com.yibao.gankkotlin.vp.gank.girls
 
-import android.content.Context
 import android.content.Intent
+import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
@@ -18,7 +18,7 @@ import com.yibao.gankkotlin.vp.gank.girl.PicActivity
  * Des：${TODO}
  * Time:2017/10/16 23:23
  */
-class GirlsAdapter(val context: Context, private var list: ArrayList<Meizi>) : BaseRvAdapter<Meizi>(context, list) {
+class GirlsAdapter(val context: FragmentActivity?, private var list: ArrayList<Meizi>) : BaseRvAdapter<Meizi>(context, list) {
     override val layoutId: Int
         get() = R.layout.item_gank_girls
 
@@ -36,7 +36,7 @@ class GirlsAdapter(val context: Context, private var list: ArrayList<Meizi>) : B
                 val intent = Intent(context, PicActivity::class.java)
                 intent.putExtra("position", holder.adapterPosition)
                 intent.putParcelableArrayListExtra("list", list)
-                context.startActivity(intent)
+                context?.startActivity(intent)
             }
         }
     }
