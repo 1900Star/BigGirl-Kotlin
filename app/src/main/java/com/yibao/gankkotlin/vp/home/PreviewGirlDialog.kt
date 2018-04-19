@@ -14,6 +14,7 @@ import com.yibao.gankkotlin.R
 import com.yibao.gankkotlin.model.DownGrilProgressData
 import com.yibao.gankkotlin.util.*
 import com.yibao.gankkotlin.vp.view.ProgressBtn
+import okhttp3.OkHttpClient
 
 
 /**

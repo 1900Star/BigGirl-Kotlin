@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.yibao.gankkotlin.R
 import com.yibao.gankkotlin.base.listener.OnTabbarVisibleListener
 import com.yibao.gankkotlin.factroy.RecyclerFactory
+import com.yibao.gankkotlin.model.Meizi
 import com.yibao.gankkotlin.util.Constract
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -70,7 +71,7 @@ abstract class BaseRvFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshList
      * @param adapter
      * @return
      */
-    fun getRecyclerView(rvType: Int, adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>): RecyclerView {
+    fun getRecyclerView(rvType: Int, adapter: BaseRvAdapter<Meizi>): RecyclerView {
         val recyclerView = RecyclerFactory().creatRecyclerView(activity, rvType, adapter)
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
@@ -111,7 +112,9 @@ abstract class BaseRvFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshList
             }
 
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
-
+                if (dy < Constract().numberZero) {
+                    controlTabbarVisible(true)
+                }
                 //得到当前显示的最后一个item的view
                 val lastChildView = recyclerView!!.layoutManager.getChildAt(recyclerView.layoutManager.childCount - 1)
                 //得到lastChildView的bottom坐标值

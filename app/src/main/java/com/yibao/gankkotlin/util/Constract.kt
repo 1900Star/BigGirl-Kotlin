@@ -13,6 +13,7 @@ class Constract {
     val gakki: String = "http://c.hiphotos.baidu.com/baike/pic/item/91ef76c6a7efce1b27893518a451f3deb58f6546.jpg"
 
     var loadDataStatus = 0
+    var numberZero = 0
     var refreshDataStatus = 1
     var loadDataMore = 2
     var noMoreDataStatus = 3

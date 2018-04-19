@@ -71,11 +71,7 @@ class MainActivity : AppCompatActivity(), OnLongTouthPreviewListener, OnTabbarVi
     }
 
     override fun showAndHintTabbar(isShowTabbar: Boolean) {
-        if (isShowTabbar) {
-            bottom_gank.visibility = View.VISIBLE
-        } else {
-            bottom_gank.visibility = View.INVISIBLE
-        }
+        bottom_gank.visibility=if (isShowTabbar) View.VISIBLE else View.INVISIBLE
     }
 
 }

@@ -20,7 +20,7 @@ import com.yibao.gankkotlin.R
  *  @创建时间:  2018/1/12 14:59
  *  @描述：    {TODO}
  */
-abstract class BaseRvAdapter<T>(context: Context?, list: MutableList<T>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+abstract class BaseRvAdapter<T>(context: Context?, list: MutableList<T>) : RecyclerView.Adapter<RecyclerView.ViewHolder?>() {
     private val minItemNum = 10
     protected abstract val layoutId: Int
     protected var mContext = context
@@ -35,7 +35,7 @@ abstract class BaseRvAdapter<T>(context: Context?, list: MutableList<T>) : Recyc
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder? {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if (viewType == TYPE_ITEM) {
 
             val view = LayoutInflater.from(parent.context)
@@ -47,7 +47,9 @@ abstract class BaseRvAdapter<T>(context: Context?, list: MutableList<T>) : Recyc
             return LoadMoreHolder(view)
         }
 
-        return null
+        val view = LayoutInflater.from(parent.context)
+                .inflate(layoutId, parent, false)
+        return getViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -56,7 +58,9 @@ abstract class BaseRvAdapter<T>(context: Context?, list: MutableList<T>) : Recyc
     }
 
     protected abstract fun bindView(holder: RecyclerView.ViewHolder, t: T)
-
+    /**
+     * 子类返回一个具体的Holder
+     */
     protected abstract fun getViewHolder(view: View): RecyclerView.ViewHolder
 
 
@@ -69,15 +73,15 @@ abstract class BaseRvAdapter<T>(context: Context?, list: MutableList<T>) : Recyc
         } else TYPE_ITEM
     }
 
-    override fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder?) {
+    override fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder) {
         super.onViewAttachedToWindow(holder)
-        val params = holder!!.itemView.layoutParams
+        val params = holder.itemView.layoutParams
         if (params != null && params is StaggeredGridLayoutManager.LayoutParams) {
             params.isFullSpan = holder.layoutPosition == itemCount - 1
         }
     }
 
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView?) {
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
 
         val manager = recyclerView!!.layoutManager
@@ -131,8 +135,8 @@ abstract class BaseRvAdapter<T>(context: Context?, list: MutableList<T>) : Recyc
 
     companion object {
 
-        private val TYPE_ITEM = 0
-        private val TYPE_FOOTER = 1
+        private const val TYPE_ITEM = 0
+        private const val TYPE_FOOTER = 1
     }
 
 

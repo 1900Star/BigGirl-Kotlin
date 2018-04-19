@@ -5,6 +5,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.widget.LinearLayout
+import com.yibao.gankkotlin.base.BaseRvAdapter
+import com.yibao.gankkotlin.model.Meizi
 
 
 /**
@@ -21,7 +23,7 @@ class RecyclerFactory {
     private val RECYCLERVIEW_STAGGERED = 2
 
     fun creatRecyclerView(context: FragmentActivity?, type: Int,
-                          adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>): RecyclerView {
+                          adapter: BaseRvAdapter<Meizi>): RecyclerView {
         val recyclerView = RecyclerView(context)
         if (type == RECYCLERVIEW_NORMAL) {
             val params = LinearLayout.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT,
