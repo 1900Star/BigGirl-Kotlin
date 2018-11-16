@@ -158,7 +158,6 @@ abstract class BaseRvFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshList
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     onRefreshData()
-
                     mSwipeRefresh.isRefreshing = false
                     page = 1
                 }

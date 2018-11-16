@@ -27,7 +27,7 @@ data class Meizi(val _id: String,
                  val type: String,
                  val url: String,
                  val used: Boolean,
-                 val who: String
+                 val who: String?
 
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
@@ -89,7 +89,9 @@ data class Meizi(val _id: String,
         result = 31 * result + type.hashCode()
         result = 31 * result + url.hashCode()
         result = 31 * result + used.hashCode()
-        result = 31 * result + who.hashCode()
+        if (who != null) {
+            result = 31 * result + who.hashCode()
+        }
         return result
     }
 

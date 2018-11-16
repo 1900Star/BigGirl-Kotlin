@@ -17,5 +17,5 @@ class MainViewPager : ViewPager {
 
     override fun onInterceptTouchEvent(event: MotionEvent): Boolean = false
 
-    override fun onTouchEvent(event: MotionEvent): Boolean = false
+//    override fun onTouchEvent(event: MotionEvent): Boolean = false
 }

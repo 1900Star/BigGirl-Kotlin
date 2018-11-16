@@ -26,7 +26,6 @@ abstract class BaseFragment : Fragment() {
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
-        val networkConnected = NetworkUtil().isNetworkConnected(activity)
         if (isResumed) {
             viewStatusProcessing(isVisibleToUser)
         }

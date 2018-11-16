@@ -84,7 +84,7 @@ abstract class BaseRvAdapter<T>(context: Context?, list: MutableList<T>) : Recyc
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
 
-        val manager = recyclerView!!.layoutManager
+        val manager = recyclerView.layoutManager
         if (manager is GridLayoutManager) {
             manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {

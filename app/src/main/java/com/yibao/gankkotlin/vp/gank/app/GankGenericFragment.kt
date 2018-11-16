@@ -49,9 +49,7 @@ class GankGenericFragment : BaseRvFragment() {
     }
 
     override fun refreshData(list: ArrayList<Meizi>) {
-        mAdapter.clear()
-        mAdapter.addHeader(list)
-
+        loadData(list)
     }
 
 
