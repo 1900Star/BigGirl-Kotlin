@@ -3,7 +3,7 @@ package com.yibao.gankkotlin.vp.home
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
+import androidx.fragment.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,8 +31,8 @@ class PreviewGirlDialog : DialogFragment() {
     private val maxDownProgress = 100
     private lateinit var progressBtn: ProgressBtn
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.window!!
+        dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog?.window!!
                 .setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val view = LinearLayout.inflate(activity, R.layout.preview_girl_dialog, null)
         initView(view)

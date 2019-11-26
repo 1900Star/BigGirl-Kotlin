@@ -24,7 +24,10 @@ class GankGenericePresenter(private val mView: BaseRvFragment) : GankGenericeCon
     }
 
     override fun start(loadType: String, loadStatus: Int) {
+
         loadData(20, 1, loadType, loadStatus)
+
+
     }
 
     override fun loadData(size: Int, page: Int, loadType: String, loadStatus: Int) {

@@ -2,10 +2,8 @@ package com.yibao.gankkotlin.util
 
 import android.content.Context
 import android.media.MediaScannerConnection
-import android.os.Build
 import android.os.Environment
-import android.support.annotation.RequiresApi
-import android.support.v4.app.FragmentActivity
+import androidx.fragment.app.FragmentActivity
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.yibao.gankkotlin.MyApplication
@@ -36,11 +34,10 @@ class ImageUtil {
     private lateinit var file: File
 
 
-    @RequiresApi(Build.VERSION_CODES.FROYO)
     fun savaPic(context: FragmentActivity?, url: String): Observable<Int> {
 
 
-        return create({
+        return create {
             name = getNameFromUrl(url)
 
             val appDir = File(Environment.getExternalStorageDirectory().absolutePath + "/girls_kotlin")
@@ -76,7 +73,7 @@ class ImageUtil {
                                 var fos: FileOutputStream? = null
                                 val total = response.body()!!.contentLength()
                                 var sum = 0
-                                var len = 0
+                                var len: Int
                                 val off = 0
                                 try {
                                     fos = FileOutputStream(file)
@@ -110,9 +107,9 @@ class ImageUtil {
             } else {
                 it.onNext(Constract().EXISTS)
                 it.onComplete()
-        }
+            }
 
-        })
+        }
 
     }
 

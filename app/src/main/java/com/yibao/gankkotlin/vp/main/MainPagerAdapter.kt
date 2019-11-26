@@ -1,8 +1,8 @@
 package com.yibao.gankkotlin.vp.main
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentStatePagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
 import android.view.View
 import android.view.ViewGroup
 import com.yibao.gankkotlin.factroy.FragmentFactory
@@ -14,7 +14,7 @@ import com.yibao.gankkotlin.factroy.FragmentFactory
  */
 class MainPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
-    override fun getItem(position: Int): Fragment? = FragmentFactory().creatMainFag(position)
+    override fun getItem(position: Int): Fragment = FragmentFactory().creatMainFag(position)!!
 
     override fun getCount(): Int = 3
 

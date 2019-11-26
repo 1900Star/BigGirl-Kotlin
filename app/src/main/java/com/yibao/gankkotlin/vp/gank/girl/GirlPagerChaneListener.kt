@@ -1,6 +1,6 @@
 package com.yibao.gankkotlin.vp.gank.girl
 
-import android.support.v4.view.ViewPager
+import androidx.viewpager.widget.ViewPager
 
 
 /**

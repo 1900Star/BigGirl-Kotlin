@@ -2,11 +2,11 @@ package com.yibao.gankkotlin.base
 
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -74,7 +74,7 @@ abstract class BaseRvFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshList
     fun getRecyclerView(rvType: Int, adapter: BaseRvAdapter<Meizi>): RecyclerView {
         val recyclerView = RecyclerFactory().creatRecyclerView(activity, rvType, adapter)
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 var lastPosition = -1
                 when (newState) {
                     RecyclerView.SCROLL_STATE_IDLE -> {
@@ -92,8 +92,7 @@ abstract class BaseRvFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshList
                                 lastPosition = findMax(lastPositions)
                             }
                         }
-                        if (lastPosition == recyclerView.layoutManager
-                                        .itemCount - 1) {
+                        if (lastPosition == recyclerView.layoutManager!!.itemCount - 1) {
                             controlTabbarVisible(false)
                             mLoadStatus = Constract().loadDataMore
                             page++
@@ -111,23 +110,23 @@ abstract class BaseRvFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshList
                 }
             }
 
-            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if (dy < Constract().numberZero) {
                     controlTabbarVisible(true)
                 }
                 //得到当前显示的最后一个item的view
-                val lastChildView = recyclerView!!.layoutManager.getChildAt(recyclerView.layoutManager.childCount - 1)
+                val lastChildView = recyclerView.layoutManager?.getChildAt(recyclerView.layoutManager!!.childCount - 1)
                 //得到lastChildView的bottom坐标值
-                val lastChildBottom = lastChildView.bottom
+                val lastChildBottom = lastChildView!!.bottom
                 //得到Recyclerview的底部坐标减去底部padding值，也就是显示内容最底部的坐标
                 val recyclerBottom = recyclerView.bottom - recyclerView.paddingBottom
                 //通过这个lastChildView得到这个view当前的position值
-                val lastPosition = recyclerView.layoutManager.getPosition(lastChildView)
+                val lastPosition = recyclerView.layoutManager!!.getPosition(lastChildView)
 
                 //判断lastChildView的bottom值跟recyclerBottom
                 //判断lastPosition是不是最后一个position
                 //如果两个条件都满足则说明是真正的滑动到了底部,这时候就可以去加载更多了。
-                if (lastChildBottom == recyclerBottom && lastPosition == recyclerView.layoutManager.itemCount - 1) {
+                if (lastChildBottom == recyclerBottom && lastPosition == recyclerView.layoutManager!!.itemCount - 1) {
                     //                    page++;
                     //                    loadMoreData();
 

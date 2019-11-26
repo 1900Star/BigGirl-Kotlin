@@ -2,9 +2,9 @@ package com.yibao.gankkotlin.base
 
 import android.os.Build
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+import com.google.android.material.appbar.AppBarLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import android.view.animation.DecelerateInterpolator
 import kotlinx.android.synthetic.main.view_toolbar.*
 

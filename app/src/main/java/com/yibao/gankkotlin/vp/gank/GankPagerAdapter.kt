@@ -1,8 +1,8 @@
 package com.yibao.gankkotlin.vp.gank
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentStatePagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
 import android.view.View
 import android.view.ViewGroup
 import com.yibao.gankkotlin.factroy.FragmentFactory
@@ -13,9 +13,9 @@ import com.yibao.gankkotlin.util.Constract
  * Des：${TODO}
  * Time:2017/10/20 02:52
  */
-class GankPagerAdapter(fm: FragmentManager?) : FragmentStatePagerAdapter(fm) {
+class GankPagerAdapter(fm: FragmentManager?) : FragmentStatePagerAdapter(fm!!) {
 
-    override fun getItem(position: Int): Fragment? = FragmentFactory().createFragment(position)
+    override fun getItem(position: Int): Fragment = FragmentFactory().createFragment(position)!!
     override fun getCount(): Int = Constract().staarrTitle.size
 
 

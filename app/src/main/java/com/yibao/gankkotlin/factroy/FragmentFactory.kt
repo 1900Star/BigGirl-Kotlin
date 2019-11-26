@@ -1,6 +1,6 @@
 package com.yibao.gankkotlin.factroy
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.yibao.gankkotlin.base.BaseRvFragment
 import com.yibao.gankkotlin.vp.gank.GankFragment
 import com.yibao.gankkotlin.vp.gank.app.GankGenericFragment

@@ -1,8 +1,8 @@
 package com.yibao.gankkotlin.util
 
-import android.support.design.widget.Snackbar
-import android.support.design.widget.Snackbar.LENGTH_LONG
-import android.support.design.widget.Snackbar.make
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.snackbar.Snackbar.LENGTH_LONG
+import com.google.android.material.snackbar.Snackbar.make
 import android.view.View
 
 

@@ -1,7 +1,7 @@
 package com.yibao.gankkotlin.vp.gank.girl
 
 import android.content.Context
-import android.support.v4.view.PagerAdapter
+import androidx.viewpager.widget.PagerAdapter
 import android.view.View
 import android.view.ViewGroup
 import com.yibao.gankkotlin.model.Meizi
@@ -47,6 +47,7 @@ class GirlPagerAdapter(private val context: Context, private val list: ArrayList
                 (context as OnGirlClickListener).hintToolbar()
             }
         })
+
         AnimationUtil().applyBobbleAnim(view)
         container.addView(view)
         return view

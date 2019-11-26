@@ -1,9 +1,9 @@
 package com.yibao.gankkotlin.factroy
 
-import android.support.v4.app.FragmentActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
+import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import android.widget.LinearLayout
 import com.yibao.gankkotlin.base.BaseRvAdapter
 import com.yibao.gankkotlin.model.Meizi
@@ -24,7 +24,7 @@ class RecyclerFactory {
 
     fun creatRecyclerView(context: FragmentActivity?, type: Int,
                           adapter: BaseRvAdapter<Meizi>): RecyclerView {
-        val recyclerView = RecyclerView(context)
+        val recyclerView = RecyclerView(context!!)
         if (type == RECYCLERVIEW_NORMAL) {
             val params = LinearLayout.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT,
                     RecyclerView.LayoutParams.MATCH_PARENT)

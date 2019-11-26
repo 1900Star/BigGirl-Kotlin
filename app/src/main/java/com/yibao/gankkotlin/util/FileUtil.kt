@@ -27,7 +27,7 @@ class FileUtil {
         //isExternalStorageEmulated()设备的外存是否是用内存模拟的，是则返回true
         return if (Environment.MEDIA_MOUNTED == Environment.getExternalStorageState() || !Environment.isExternalStorageEmulated()) {
             context.externalCacheDir
-                    .absolutePath
+                    ?.absolutePath!!
         } else {
             context.cacheDir?.absolutePath!!
         }
